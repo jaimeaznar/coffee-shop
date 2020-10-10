@@ -1,5 +1,9 @@
 .vscode/
 .coffee_shop
+.coffee_shop/
+.coffee_shop/bin
+.coffee_shop/include
+.coffee_shop/lib
 
 
 
