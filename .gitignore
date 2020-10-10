@@ -1,11 +1,13 @@
 .vscode/
 .coffee_shop
-.coffee_shop/
-.coffee_shop/bin
-.coffee_shop/include
-.coffee_shop/lib
 
-
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
 
 # OS generated files #
 ######################

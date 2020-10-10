@@ -139,37 +139,43 @@ def post_drinks(f):
 @app.route('/drinks/<id>', methods=['PATCH'])
 @requires_auth('patch:drinks')
 def edit_drink(f, id):
-    '''
-    Update drink if it exists and return drink info
-    '''
     try:
-        # get data from form request
         req = request.get_json()
-        # get drink by id, return none if it doesnt exist
         drink = Drink.query.filter_by(id=id).one_or_none()
 
-        # if it exists
         if drink:
-            drink.title = req.get('title') if data.get(
-                'title') else drink.title
-            recipe = data.get('recipe') if data.get('recipe') else drink.recipe
-            drink.recipe = recipe if isinstance(
-                recipe, str) else json.dumps(recipe)
+            # set title
+            if req.get('title'):
+                drink.title = req.get('title')
+            else:
+                drink.title = drink.title
+
+            # set recipe
+            if req.get('recipe'):
+                recipe = req.get('recipe')
+            else:
+                recipe = drink.recipe
+
+            # check if recipe is string
+            if isinstance(recipe, str):
+                drink.recipe = recipe
+            else:
+                drink.recipe = json.dumps(recipe)
+
             drink.update()
-            return make_response(jsonify({
-                'success': True,
-                'drinks': [drink.long()]
-            }), 200)
+            return json.dumps({'success': True, 'drinks': [drink.long()]}), 200
         else:
-            return make_response(jsonify({
-                'success': False,
-                'error': 'Drink ' + str(id) + ' doesnt exist.'
-            }), 404)
+            return json.dumps({
+                'success':
+                False,
+                'error':
+                'Drink #' + id + ' not found to be edited'
+            }), 404
     except BaseException:
-        return make_response(jsonify({
+        return json.dumps({
             'success': False,
             'error': "An error occurred"
-        }), 500)
+        }), 500
 
 
 '''
@@ -238,7 +244,6 @@ def unprocessable(error):
                     "error": 404,
                     "message": "resource not found"
                     }), 404
-
 '''
 
 
