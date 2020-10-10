@@ -10,6 +10,12 @@ POSTman collection updated with tokens from both **manager** and **barista**
 ### POSTman
 * Collection with updated tokens at: ```/Users/jaimeaznar/Desktop/UDACITY/coffee-shop/backend/udacity-fsnd-udaspicelatte.postman_collection.json```
 
+### POSTman test
+tests in:
+```/Users/jaimeaznar/Desktop/UDACITY/coffee-shop/backend/barista-udacity-fsnd-udaspicelatte.postman_test_run.json```
+
+```/Users/jaimeaznar/Desktop/UDACITY/coffee-shop/backend/manager-udacity-fsnd-udaspicelatte.postman_test_run.json```
+
 ### Backend
 * Auth functionalities added
 * Endpoints and error implemented
